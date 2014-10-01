@@ -1,0 +1,66 @@
+
+body {
+  font-family: RobotoDraft, sans-serif;
+  color: #333;
+  margin: 0;
+  /*-webkit-user-select: none;*/
+  /*-moz-user-select: none;*/
+  /*-ms-user-select: none;*/
+  /*user-select: none;*/
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-touch-callout: none;
+
+}
+core-header-panel {
+  background-color: #252525;
+  color: #f3f3f3;
+}
+#nav_header {
+  background-color: #131313;
+  color: #fff;
+}
+#nav_header img {
+  /*width:200px;*/
+  /*height: 48px;*/
+}
+core-item {
+  font-size: 16px;
+}
+core-item:hover {
+  color:#446892;
+}
+core-item[icon="home"].core-selected {
+  color: #0266C8;
+}
+core-item[icon="favorite"].core-selected {
+  color: #F90101;
+}
+core-item[icon="history"].core-selected {
+  color: #F2B50F;
+}
+core-item[icon="account-box"].core-selected {
+  color: #0266C8;
+}
+core-item[icon="payment"].core-selected {
+  color: #00933B;
+}
+core-item[icon="group-work"].core-selected {
+  color: #F90101;
+}
+
+ core-icon {
+      transition: all 0.2s;
+      -webkit-transition: all 0.2s;
+      
+    }
+core-scaffold::shadow core-toolbar {
+  background-color: #131313;
+}
+#content-container {
+  background-color: white;
+}
+#content-pages {
+  height: 100%;
+  overflow:auto;
+}
+

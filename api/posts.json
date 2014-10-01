@@ -1,0 +1,26 @@
+[
+  {
+    "uid": 1,
+    "avatar" : "../images/avatar-01.jpg"
+  },
+  {
+    "uid": 2,
+    "avatar" : "../images/avatar-02.jpg"
+  },
+  {
+    "uid": 3,
+    "avatar" : "../images/avatar-03.jpg"
+  },
+  {
+    "uid": 4,
+    "avatar" : "../images/avatar-04.jpg"
+  },
+  {
+    "uid": 5,
+    "avatar" : "../images/avatar-05.jpg"
+  },
+  {
+    "uid": 6,
+    "avatar" : "../images/avatar-06.jpg"
+  }
+]

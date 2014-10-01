@@ -1,0 +1,94 @@
+<link rel="import" href="post-list.html">
+
+<polymer-element name="session-list">
+
+  <template>
+    <style>
+      :host {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+      core-scroll-header-panel {
+        height: 100%;
+      }
+      paper-tab {
+        font-size: 18px;
+      }
+      core-icon[icon="android"] {
+        color: #0a8f08;
+      }
+      
+      core-icon[icon="polymer"] {
+        color: #0033FF;
+      }
+      core-icon[icon="drive-keep"] {
+        color: #ffea00;
+      }
+      paper-tabs {
+        display: block;
+        width: 100%;
+        margin-bottom: 2px;
+        background-color: #00bcd4;
+        color: #fff;
+        box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.2);
+      }
+      
+      paper-tabs[noink][nobar] paper-tab.core-selected {
+        color: #ffff8d;
+      }
+      
+      paper-tabs.transparent-teal {
+        background-color: transparent;
+        color: #00bcd4;
+        box-shadow: none;
+      }
+      
+      paper-tabs.transparent-teal::shadow #selectionBar {
+        background-color: #00bcd4;
+      }
+      
+      paper-tabs.transparent-teal paper-tab::shadow #ink {
+        color: #00bcd4;
+      }    
+    </style>
+
+    <post-service id="service" sessions="{{sessions}}"></post-service>
+    
+    <core-scroll-header-panel id="scroll_panel" fixed >
+      <paper-tabs id="tabs" selected="0" class="core-header">
+        <paper-tab>Inicio</paper-tab>
+        <paper-tab>Géneros</paper-tab>
+        <paper-tab>Listas Top</paper-tab>
+        <paper-tab>Radio</paper-tab>
+        <paper-tab>Países</paper-tab>
+      </paper-tabs>
+    </core-scroll-header-panel>
+    <h2>¡Escucha Gratis!</h2>
+    
+    <post-list show="all"></post-list>
+      
+    
+  
+    
+  </template>
+
+  <script>
+  Polymer({
+    handleFavorite: function(event, detail, sender) {
+      var session = sender.templateInstance.model.session;
+      this.$.service.setFavorite(session.id, session.favorite);
+      event.stopPropagation();
+    },
+    resetScroll: function(){ 
+      // fix scroll at top when switch tabs
+      this.$.scroll_panel.scroller.scrollTop = 0;
+    },
+    detailSession: null,
+    showDetail: function(event, detail, sender){
+      this.detailSession = sender.templateInstance.model.session;
+      this.$.detail.toggle();
+    }
+  });
+  </script>
+</polymer-element>
