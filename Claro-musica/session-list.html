@@ -1,5 +1,5 @@
-<link rel="import" href="post-list.html">
 
+<link rel="import" href="post-list.html">
 <polymer-element name="session-list">
 
   <template>
@@ -53,20 +53,13 @@
       }    
     </style>
 
-    <post-service id="service" sessions="{{sessions}}"></post-service>
     
     <core-scroll-header-panel id="scroll_panel" fixed >
-      <paper-tabs id="tabs" selected="0" class="core-header">
-        <paper-tab>Inicio</paper-tab>
-        <paper-tab>Géneros</paper-tab>
-        <paper-tab>Listas Top</paper-tab>
-        <paper-tab>Radio</paper-tab>
-        <paper-tab>Países</paper-tab>
-      </paper-tabs>
-    </core-scroll-header-panel>
+   
     <h2>¡Escucha Gratis!</h2>
-    
     <post-list show="all"></post-list>
+    </core-scroll-header-panel>
+
       
     
   
@@ -89,6 +82,15 @@
       this.detailSession = sender.templateInstance.model.session;
       this.$.detail.toggle();
     }
+  });
+  </script>
+  
+  <script>
+  var tabs = document.querySelector('paper-tabs');
+  var list = document.querySelector('post-list');
+
+  tabs.addEventListener('core-select', function() {
+    list.show = tabs.selected;
   });
   </script>
 </polymer-element>

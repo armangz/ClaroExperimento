@@ -1,5 +1,7 @@
 <!doctype html>
 <html>
+<meta charset="utf-8">
+
 
 <head>
 
@@ -32,7 +34,7 @@
   
   
   <link rel="import" href="session-list.html">
-  <link rel="import" href="post-card.html">
+
 
 
   <style>
@@ -88,7 +90,16 @@
     core-scaffold[mode=cover] .content {
       margin: 20px 100px 20px 0;
     }
-    
+    #tabs {
+    width: 100%;
+    margin: 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+	  text-transform: uppercase;
+    }
+  
     paper-tabs {
         display: block;
         width: 100%;
@@ -120,7 +131,7 @@
   
   @media (min-width: 481px) {
     #tabs {
-      width: 200px;
+      width: 100%;
     }
     .container {
       width: 400px;
@@ -142,6 +153,7 @@
         
       </core-toolbar>
       
+      
     <core-menu id="nav_menu" selected="0">
           <core-item icon="favorite" label="Favoritos"><a href="#sessions"></a></core-item>
           <core-item icon="history" label="Historial"><a href="#schedule"></a></core-item>
@@ -151,6 +163,17 @@
 
 
   </core-header-panel>
+  <core-toolbar>
+
+      <paper-tabs id="tabs" selected="all" self-end>
+         <paper-tab>Inicio</paper-tab>
+         <paper-tab>Géneros</paper-tab>
+         <paper-tab>Listas Top</paper-tab>
+         <paper-tab>Radio</paper-tab>
+         <paper-tab>Países</paper-tab>
+      </paper-tabs>
+
+    </core-toolbar>
   
   <template is="auto-binding">
   <div layout vertical fit>
@@ -191,7 +214,6 @@
       </section>
     </core-toolbar>
 
-
   </div>
 
   </template>
@@ -200,14 +222,6 @@
   
 
 
-  <script>
-  var tabs = document.querySelector('paper-tabs');
-  var list = document.querySelector('post-list');
-
-  tabs.addEventListener('core-select', function() {
-    list.show = tabs.selected;
-  });
-  </script>
 </body>
 
 </html>

@@ -5,28 +5,31 @@
   <template>
     <style>
     :host {
-      display: block;
-      position: relative;
-      background-color: #EBEBEB;
-      padding: 10px;
-      width: 100%;
-      font-size: 1.2rem;
-      font-weight: 20;
+      display: inline;
+      margin-left 10%;
+      background-color: white;
     }
+    
     .card-header {
+      
       margin-bottom: 10px;
     }
 
     polyfill-next-selector { content: '.card-header img'; }
     .card-header ::content img {
-      width: 180px;
+      width: 100%;
       border-radius: 5%;
       margin: 10px;
+      
     }
     </style>
+
     <div class="card-header" layout horizontal center>
+
       <content select="img"></content>
+
     </div>
+    
     <content></content>
   </template>
   <script>
