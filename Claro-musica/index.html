@@ -15,26 +15,28 @@
   <link rel="import" href="../bower_components/core-header-panel/core-header-panel.html">
   <link rel="import" href="../bower_components/core-toolbar/core-toolbar.html">
   <link rel="import" href="../bower_components/paper-tabs/paper-tabs.html">
-  
+
   <link rel="import" href="../bower_components/core-icons/core-icons.html">
   <link rel="import" href="../bower_components/core-icons/av-icons.html">
   <link href="../bower_components/core-item/core-item.html" rel="import">
   <link rel="import" href="../bower_components/paper-tabs/paper-tabs.html">
   <link rel="import" href="../bower_components/core-icon-button/core-icon-button.html">
   <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
-  
+
   <link rel="import" href="../bower_components/core-scaffold/core-scaffold.html">
   <link rel="import" href="../bower_components/core-header-panel/core-header-panel.html">
   <link rel="import" href="../bower_components/core-menu/core-menu.html">
   <link rel="import" href="../bower_components/core-item/core-item.html">
   <link href="../bower_components/core-menu-button/core-menu-button.html" rel="import">
-  
-  
-  <link rel="stylesheet" href="styles.css" shim-shadowdom>
-  
-  
-  <link rel="import" href="session-list.html">
 
+
+
+  <link rel="stylesheet" href="styles.css" shim-shadowdom>
+
+
+
+  <link rel="import" href="session-list.html">
+<!--  <link rel="import" href="covers.html">-->
 
 
   <style>
@@ -47,13 +49,13 @@
   core-header-panel {
     height: 100%;
     overflow: auto;
-    -webkit-overflow-scrolling: touch; 
+    -webkit-overflow-scrolling: touch;
   }
   core-toolbar {
     background: #131313;
     color: white;
   }
-  
+
   #tabs {
     width: 100%;
     margin: 0;
@@ -67,7 +69,7 @@
     width: 80%;
     margin: 50px auto;
   }
-  
+
    core-scaffold {
       position: absolute;
       top: 0;
@@ -75,18 +77,18 @@
       bottom: 0;
       left: 0;
     }
-    
+
     .content {
       background-color: #fff;
       height: 5000px;
       padding: 20px;
     }
-    
+
     /* some default styles for mode="cover" on core-scaffold */
     core-scaffold[mode=cover]::shadow core-header-panel::shadow #mainContainer {
       left: 120px;
     }
-    
+
     core-scaffold[mode=cover] .content {
       margin: 20px 100px 20px 0;
     }
@@ -99,7 +101,7 @@
     user-select: none;
 	  text-transform: uppercase;
     }
-  
+
     paper-tabs {
         display: block;
         width: 100%;
@@ -108,27 +110,27 @@
         color: #fff;
         box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.2);
       }
-      
+
       paper-tabs[noink][nobar] paper-tab.core-selected {
         color: #ffff8d;
       }
-      
+
       paper-tabs.transparent-teal {
         background-color: transparent;
         color: #00bcd4;
         box-shadow: none;
       }
-      
+
       paper-tabs.transparent-teal::shadow #selectionBar {
         background-color: #00bcd4;
       }
-      
+
       paper-tabs.transparent-teal paper-tab::shadow #ink {
         color: #00bcd4;
       }
-  
-  
-  
+
+
+
   @media (min-width: 481px) {
     #tabs {
       width: 100%;
@@ -137,8 +139,8 @@
       width: 400px;
     }
   }
-  
-  
+
+
   </style>
 
 </head>
@@ -150,10 +152,10 @@
   <core-header-panel navigation flex mode="seamed">
     <core-toolbar id="nav_header" horizontal layout center>
       <img src="../img_claro/logo_claromusica_nocache-02.png">
-        
+
       </core-toolbar>
-      
-      
+
+
     <core-menu id="nav_menu" selected="0">
           <core-item icon="favorite" label="Favoritos"><a href="#sessions"></a></core-item>
           <core-item icon="history" label="Historial"><a href="#schedule"></a></core-item>
@@ -165,61 +167,81 @@
   </core-header-panel>
   <core-toolbar>
 
-      <paper-tabs id="tabs" selected="all" self-end>
-         <paper-tab>Inicio</paper-tab>
-         <paper-tab>Géneros</paper-tab>
-         <paper-tab>Listas Top</paper-tab>
-         <paper-tab>Radio</paper-tab>
-         <paper-tab>Países</paper-tab>
+      <paper-tabs id="tabs"selected="0">
+         <paper-tab onclick="stuff(0);">Inicio</paper-tab>
+         <paper-tab onclick="stuff(1);">Géneros</paper-tab>
+         <paper-tab onclick="stuff(2);">Listas Top</paper-tab>
+         <paper-tab onclick="stuff(3);">Radio</paper-tab>
+         <paper-tab onclick="stuff(4);">Países</paper-tab>
       </paper-tabs>
 
     </core-toolbar>
-  
-  <template is="auto-binding">
-  <div layout vertical fit>
-  <session-list></session-list>
-  
-    <div class="container" layout vertical center>
-    <!--CONTENIDO -->
-      
 
-    </div>
-             
-    <div flex></div>
-    
-    <!--Segunda Barra-->
-    <core-toolbar class="medium-tall" horizontal layout center>
+  <core-animated-pages  transitions="slide-from-right">
+    <section>
+      <div layout vertical center center-justified style="background:#B4E0E1;">
+      <div displayMode="inicio">
+        <session-list></session-list>
+      </div>
+      </div>
+    </section>
+    <section>
+      <div layout vertical center center-justified style="background:#F9B24F;">
+        <div displayMode="generos">ASDFG</div>
+      </div>
+    </section>
+
+
+
+      <div   class="footer" layout horizontal slide-up style="background:#E61875">
+
+         <core-toolbar class="medium-tall" horizontal layout center>
     <paper-icon-button icon="av:skip-previous" ><a href="#"></a></paper-icon-button>
       <paper-icon-button icon="av:play-arrow" ><a href="#"></a></paper-icon-button>
       <paper-icon-button icon="av:skip-next" ><a href="#"></a></paper-icon-button>
       <paper-icon-button icon="av:shuffle" ><a href="#"></a></paper-icon-button>
       <paper-icon-button icon="av:replay" ><a href="#"></a></paper-icon-button>
       <paper-icon-button icon="av:volume-up" ><a href="#"></a></paper-icon-button>
-      
-      
+
+
       <img src="../img_claro/rsz_alb_greatest_hits_303042.jpg">
       <section class="yellow-slider">
-      
+
         <div>Don't Stop Me Now - Queen</div>
         <paper-slider value="50"></paper-slider>
-          
+
       </section>
 
       <div flex></div>
       <section>
-      
+
       <div> Siguiente:</div>
       <img src="../img_claro/rsz1_alb_1984_197800.jpg">
       <div> Jump - Van Halen</div>
       </section>
     </core-toolbar>
 
-  </div>
+      </div>
 
-  </template>
+   <!--
+    <section>
+      <div layout vertical center center-justified style="background:orange;">
+        <div>4</div>
+      </div>
+    </section>
+    <section>
+      <div layout vertical center center-justified style="background:green;">
+        <div>5</div>
+      </div>
+    </section>
+-->
+  </core-animated-pages>
+
+
+
   </core-scaffold>
-  
-  
+
+
 
 
 </body>
