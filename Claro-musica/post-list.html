@@ -6,7 +6,7 @@
   <template>
     <style>
     :host {
-      
+      height: 100%;
       width: 100%;
     }
     post-card {
@@ -16,17 +16,17 @@
 
     <post-service id="service" posts="{{posts}}">
     </post-service>
-    
-    <div layout horizontal center>
+
+    <div layout horizontal wrap>
 
       <template repeat="{{post in posts}}">
-      
+
         <post-card>
           <img src="{{post.avatar}}" width="180" height="180">
         </post-card>
-        
+
       </template>
-      
+
     </div>
   </template>
   <script>

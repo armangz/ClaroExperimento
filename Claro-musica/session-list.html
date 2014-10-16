@@ -18,7 +18,7 @@
       core-icon[icon="android"] {
         color: #0a8f08;
       }
-      
+
       core-icon[icon="polymer"] {
         color: #0033FF;
       }
@@ -33,37 +33,37 @@
         color: #fff;
         box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.2);
       }
-      
+
       paper-tabs[noink][nobar] paper-tab.core-selected {
         color: #ffff8d;
       }
-      
+
       paper-tabs.transparent-teal {
         background-color: transparent;
         color: #00bcd4;
         box-shadow: none;
       }
-      
+
       paper-tabs.transparent-teal::shadow #selectionBar {
         background-color: #00bcd4;
       }
-      
+
       paper-tabs.transparent-teal paper-tab::shadow #ink {
         color: #00bcd4;
-      }    
+      }
     </style>
 
-    
+
     <core-scroll-header-panel id="scroll_panel" fixed >
-   
+
     <h2>¡Escucha Gratis!</h2>
     <post-list show="all"></post-list>
     </core-scroll-header-panel>
 
-      
-    
-  
-    
+
+
+
+
   </template>
 
   <script>
@@ -73,7 +73,7 @@
       this.$.service.setFavorite(session.id, session.favorite);
       event.stopPropagation();
     },
-    resetScroll: function(){ 
+    resetScroll: function(){
       // fix scroll at top when switch tabs
       this.$.scroll_panel.scroller.scrollTop = 0;
     },
@@ -84,7 +84,7 @@
     }
   });
   </script>
-  
+
   <script>
   var tabs = document.querySelector('paper-tabs');
   var list = document.querySelector('post-list');
