@@ -1,35 +1,170 @@
-<link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../post-service/post-service.html">
 <link rel="import" href="post-card.html">
+<link href="../bower_components/core-animated-pages/core-animated-pages.html" rel="import">
 
 <polymer-element name="post-list" attributes="show">
-  <template>
-    <style>
-    :host {
-      height: 100%;
-      width: 100%;
-    }
-    post-card {
-      margin-bottom: 30px;
-    }
-    </style>
+    <template>
+        <style>
+        :host {
+            height: 100%;
+            width: 100%;
+        }
+        post-card {
+            margin-bottom: 30px;
+        }
+        .chip-container {
+            position: absolute;
+            top: 0px;
+            right: 0;
+            left: 0;
+            padding-bottom: 15%; 
+            text-align: center;
+        }
+        .chip {
+            display: inline-block;
+            position: relative;
+            border-radius: 3px;
+            margin: 4px;
+            overflow: hidden;
+            text-align: start;
+            background-color: #fff;
+            box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16);
+        }
+        .chip-top {
+            width: 180px;
+            height: 180px;
+        }
+        .chip-bottom {
+            padding: 8px;
+            line-height: 1.5;
+        }
+        .chip-album-title {
+            font-weight: bold;
+        }
+        #details {
+            /*padding: 0% 15%;*/
+            position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+        }
+        .card {
+            height: 300px;
+            border-radius: 3px;
+            text-align: start;
+            overflow: hidden;
+            background: #fff;
+            box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+        .card-left {
+            width: 300px;
+        }
+        .card-right {
+            padding: 24px;
+        }
+        .card-icon {
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            margin-right: 16px;
+        }
+        .card-album-title {
+            font-size: 2em;
+        }
+        </style>
 
-    <post-service id="service" posts="{{posts}}">
-    </post-service>
+        <post-service id="service" posts="{{posts}}">
+        </post-service>
 
-    <div layout horizontal wrap>
+        <!-- <div layout horizontal wrap>
 
-      <template repeat="{{post in posts}}">
+            <template repeat="{{posts as item}}">
 
-        <post-card>
-          <img src="{{post.avatar}}" width="180" height="180">
-        </post-card>
+                <post-card>
+                    <img src="{{item.avatar}}" width="180" height="180">
+                </post-card>
 
-      </template>
+            </template>
 
-    </div>
-  </template>
-  <script>
-  Polymer({});
-  </script>
+        </div> -->
+        <core-animated-pages selected="{{page}}" transitions="hero-transition" on-core-animated-pages-transition-end="{{complete}}">
+
+            <section>
+
+                <div class="chip-container" hero-p on-tap="{{transition}}" layout horizontal wrap>
+
+                    <template repeat="{{posts as item}}">
+
+                        <div class="chip" hero-id="{{item.artist}}-{{item.album}}" hero?="{{selectedAlbum === item }}">
+                            <div class="chip-top" hero-id="{{item.artist}}-{{item.album}}-art" hero?="{{selectedAlbum === item}}">
+                                <img src="{{item.color}}"></img>
+                            </div>
+                        </div>
+
+                    </template>
+
+                </div>
+                <!--<div layout horizontal wrap>
+
+				      <template repeat="{{posts as item}}">
+
+				        <post-card>
+				        	<img src="{{item.avatar}}" width="180" height="180">
+				        </post-card>
+
+				      </template>
+
+				    </div>-->
+            </section>
+
+            <section id="details" on-tap="{{transition}}">
+                <div class="card" layout horizontal hero-id="{{selectedAlbum.artist}}-{{selectedAlbum.album}}" hero>
+
+                    <img class="card-left" hero-id="{{selectedAlbum.artist}}-{{selectedAlbum.album}}-art" hero src="{{selectedAlbum.color}}"></img>
+
+                    <div class="card-right" flex>
+                        <div layout horizontal center>
+                            <div>
+                                <div class="card-icon" style="background-image:{{selectedAlbum.jdk}};"></div>
+                            </div>
+                            <div flex>
+                                <div class="card-album-title">{{selectedAlbum.album}}</div>
+                                <div class="card-album-artist">{{selectedAlbum.artist}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+        </core-animated-pages>
+    </template>
+    <script>
+    Polymer('post-list', {
+
+        page: 0,
+        scrolling: 0,
+        selectedAlbum: null,
+
+        transition: function(e) {
+            if (this.page === 0 && e.target.templateInstance.model.item) {
+                this.selectedAlbum = e.target.templateInstance.model.item;
+                this.page = 1;
+                // this.scrolling = this.shadowRoot.querySelector('#listAlbums').scrollTop;
+                // this.scrolling = window.scrollTop;
+                // this.scrolling = jQuery(this.shadowRoot.querySelector('.chip-container')).scrollTop();
+            } else {
+                this.page = 0;
+            }
+        },
+        complete: function(e) {
+        	if (this.page === 0) {
+        		// this.shadowRoot.querySelector('#listAlbums').scrollTop = this.scrolling;
+        		// this.shadowRoot.querySelector('#listAlbums').scrollBy(0, this.scrolling);
+        		// window.scrollBy(0, this.scrolling);
+        		// jQuery(this.shadowRoot.querySelector('#listAlbums')).scrollTop(this.scrolling);
+        		// alert(this.scrolling);
+        	}
+        }
+    });
+    </script>
 </polymer-element>
